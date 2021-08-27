@@ -1,0 +1,1 @@
+404<?php /**PATH C:\xampp\htdocs\projeto-base2\pmk\codigo\resources\views/errors/404.blade.php ENDPATH**/ ?>

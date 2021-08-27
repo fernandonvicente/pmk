@@ -1,0 +1,1 @@
+404<?php /**PATH C:\xampp7\htdocs\nara-sistema\nara-controleinterno\resources\views/errors/404.blade.php ENDPATH**/ ?>
