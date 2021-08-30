@@ -1,34 +1,33 @@
-@extends('admin.layout.template')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> - Gerenciamento Grupo Recupera Brasil <?php $__env->stopSection(); ?>
 
-@section('title') {{ $title }} - Gerenciamento Grupo Recupera Brasil @endsection
-
-@push('css')
+<?php $__env->startPush('css'); ?>
     
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content-header')
+<?php $__env->startSection('content-header'); ?>
   <section class="content-header">
       <h1>
-        {{ $title }} <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title=""></span>
+        <?php echo e($title); ?> <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title=""></span>
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{ url('/pmkadmin') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">{{ $title }}</li>
+        <li><a href="<?php echo e(url('/pmkadmin')); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><?php echo e($title); ?></li>
       </ol>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content">
 
-  @if(session()->has('message'))
+  <?php if(session()->has('message')): ?>
   <div class="alert alert-success alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <h4><i class="icon fa fa-check"></i> Alerta!</h4>
-    {{ session()->get('message') }}
+    <?php echo e(session()->get('message')); ?>
+
   </div>
-  @endif
+  <?php endif; ?>
 
   <div class="row">
         <div class="col-xs-12">
@@ -36,7 +35,7 @@
             <div class="box-header">
               <h3 class="box-title">
                  
-                  <a href="{{ url('/pmkadmin/doador/create') }}"> 
+                  <a href="<?php echo e(url('/pmkadmin/doador/create')); ?>"> 
                     <button type="button" class="btn btn-info pull-right"><i class="fa fa-fw fa-plus"></i> Cadastrar
                     </button>
                   </a>
@@ -86,11 +85,11 @@
         <!-- /.col -->
       </div>
       </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@push('scripts')
-<script src="{{ url('/assets_admin/js/script-cliente.js') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(url('/assets_admin/js/script-cliente.js')); ?>"></script>
 
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -110,7 +109,7 @@
     if (confirm("Tem certeza que deseja excluir o registro?")) {
       var id = idRegistro;
       // Fazemos a requisão ajax com o arquivo envia.php e enviamos os valores de cada campo através do método POST
-      $.get('{{ url("/pmkadmin/doador/delete/") }}/' + id, function (results) {
+      $.get('<?php echo e(url("/pmkadmin/doador/delete/")); ?>/' + id, function (results) {
         if(results.success){
           alert('Registro excluído com sucesso!');
           location.reload();
@@ -149,7 +148,7 @@ $(function () {
        processing: true,
        serverSide: true,
        ajax: {
-           url: '{!! url("/pmkadmin/doador/carregaTabela") !!}',
+           url: '<?php echo url("/pmkadmin/doador/carregaTabela"); ?>',
            data: function ( d ) {
                //d.valorFiltroInput = $('#valorFiltroInput').val();
                // d.custom = $('#myInput').val();
@@ -176,5 +175,7 @@ $(function () {
 </script>
 
 
-@endpush
+<?php $__env->stopPush(); ?>
 
+
+<?php echo $__env->make('admin.layout.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\projeto-base2\pmk\pmk\resources\views/admin/doador/indexajax.blade.php ENDPATH**/ ?>

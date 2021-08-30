@@ -430,21 +430,18 @@ public function destroy($id)
     DB::beginTransaction(); 
     $objDoador = Doador::find($id);
 
-    if($objDoador){            
+    if($objDoador){ 
 
-      $doadorUpdate = $objDoador->update([
-        'status'              => 'Excluido',
-      ]);
-
-      if($doadorUpdate){  
-       DB::commit();
+      $objDoador->delete();
+      
+      DB::commit();
 
        return response()->json([
         'success'   => true,
         'result' => $id,
       ], 200);
 
-     }
+     
    }else{
     DB::rollBack();
     return response()->json([
@@ -504,35 +501,13 @@ public function carregaTabela(Request $request)
     $btn = '';
 
 
-    $btn .= '<a href="'.$link.'"><i class="fa fa-fw fa-edit" title="Editar Dados Cliente '.$row->nome.'"></i></a>';
+    $btn .= '<a href="'.$link.'"><i class="fa fa-fw fa-edit" title="Editar Dados Cliente '.$row->nome.'"></i></a>'; 
 
 
 
-/*
-if(!Gate::denies('edit_usuarios')) {
-if($row->user_id){
-$btn .= '<a href="'.$link2.'"><i class="fa fa-fw fa-user" title="Trocar Senha de Login do Consultor '.$row->nome.'"></i></a>';
-} 
-}
+    $btn .= '<a href="javascript:void(0);" onclick="excluirRegistro('.$row->id.');"><i class="fa fa-fw fa-trash" style="color: #ff0000;" title="Excluir - '.$row->id.'"></i></a>';
 
 
-
-if(!Gate::denies('edit_consultores')) {
-$btn .= '<a href="'.$link_imprimir.'" target="_blank" ><i class="fa fa-fw fa-file-text-o" title="Imprimir Dados Consultor '.$row->nome.'"></i></a>';
-}
-
-if(!Gate::denies('delete_consultores')) {
-$btn .= '<a href="javascript:void(0);" onclick="excluirRegistro('.$row->id.');"><i class="fa fa-fw fa-trash" style="color: #ff0000;" title="Excluir - '.$row->id.'"></i></a>';
-}
-
-if($row->email){
-if(!Auth::user()->cliente_id){
-$btn .= '<a href="javascript:void(0);" onclick="enviarTermo('.$row->id.');"><i class="fa fa-fw fa-send" style="color: #4caf50;" title="Enviar Termo de - '.$row->nome.'"></i></a>';
-}
-}else{
-$btn .= '<a href="javascript:void(0);"><i class="fa fa-fw fa-send" style="color: #ffeb3b;" title="CONSULTOR SEM EMAIL DE ENVIO"></i></a>';
-}
-*/
 
 
 return $btn;

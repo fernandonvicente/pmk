@@ -52,15 +52,7 @@ Route::group(['prefix' => 'pmkadmin', 'namespace' => 'Admin', 'as' => 'admin::',
         Route::get('/edit/{id}', 'DoadorController@edit');
         Route::get('/edit/{id}/{tab}', 'DoadorController@edit');
         Route::post('/edit/{id}', 'DoadorController@update');
-        Route::post('/salvarInformacao', 'DoadorController@salvarInformacao');
-        Route::get('/informacao/show/{id}', 'DoadorController@showInformacao');
-        Route::get('/informacao/delete/{id}', 'DoadorController@destroyClientInformation');
-        Route::post('/salvarSenha', 'DoadorController@salvarSenha');
-        Route::get('/senha/show/{id}', 'DoadorController@showSenha');
-        Route::get('/senha/delete/{id}', 'DoadorController@destroyClientSenha');
-        Route::get('/carregaTabelaSenhas/{clienteId}', 'DoadorController@carregaTabelaSenhas');
-        Route::get('/download/{file}', 'DoadorController@download');
-        Route::get('/delete/arquivo/{id}', 'DoadorController@destroyArquivo');
+        Route::get('/delete/{id}', 'DoadorController@destroy');
        
     }); 
 
